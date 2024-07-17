@@ -4,11 +4,12 @@ import os
 import pymongo
 import uuid
 import datetime
+import copy
 from db_default_config import db_sample
 dotenv.load_dotenv()
 
 
-class Module:
+class Mongodb:
     def __init__(self):
         self.client = pymongo.MongoClient(
             os.environ.get("DISCORD_BOT_MONGODB_URI"))
@@ -187,3 +188,215 @@ class Module:
                 {"$inc": {"count": 1}}
             )
         return False if existing_error else {"id": result.inserted_id, "hash": error_hash}
+
+    def update_guild_config(self, type, data, action):
+        guild = self.find_guild(data["guild_id"])[0]
+        if not guild:
+            guild_created = self.create_guild(data)
+            if guild_created["status"] == "error":
+                return {
+                    "status": "error",
+                    "message": guild_created["message"]
+                }
+            else:
+                guild = self.find_guild(data["guild_id"])[0]
+        if guild["ban"]:
+            return {
+                "status": "error",
+                "message": "Guild is banned"
+            }
+
+        match type:
+            case "config":
+                self.guilds.update_one({"id": data["id"]}, {
+                                       "$set": {"config": data["config"]}})
+                return {
+                    "status": "OK",
+                    "message": f"Updated guild configuration for {data['name']} ${data['id']}"
+                }
+            case "guild_settings":
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {
+                        "pass": data["pass"],
+                        "active": data["active"],
+                        "market": data["market"],
+                        "preferred_language": data["preferred_language"],
+                        "global_world": data["global_world"],
+                        "global_guild": data["global_guild"]
+                    }
+                })
+            case "guild_id":
+                if not data["new_guild_id"]:
+                    return
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"guild_id": data["new_guild_id"]}})
+            case "pass":
+                if not data["pass"] or len(data["pass"]) < 6:
+                    return
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"pass": data["pass"]}})
+            case "market":
+                base_markets = self.get_base_config("markets")
+                markets_array = [market["market"] for market in base_markets]
+                if not data["market"] in markets_array:
+                    return
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"market": data["market"]}})
+            case "swear_words_punishment":
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"config.swear_words_punishment": data["swear_words_punishment"]}})
+            case "live_ennoblements":
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"config.live_ennoblements": data["live_ennoblements"]}})
+            case "coord_info":
+                self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                    "$set": {"config.coord_info": data["coord_info"]}})
+            case "ai_bot_chat_channels":
+                ai_bot_chat_channels = guild["config"]["ai_bot_chat_channels"]
+                match action:
+                    case "add":
+                        if not data["channel_id"] in ai_bot_chat_channels:
+                            ai_bot_chat_channels.append(data["channel_id"])
+                            self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                                "$set": {"config.ai_bot_chat_channels": ai_bot_chat_channels}})
+                            return f"Channel {data['channel_id']} added to AI bot chat channels successfully"
+                        return f"Channel {data['channel_id']} is already in AI bot chat channels!"
+                    case "remove":
+                        if data["channel_id"] in ai_bot_chat_channels:
+                            ai_bot_chat_channels.remove(data["channel_id"])
+                            self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                                "$set": {"config.ai_bot_chat_channels": ai_bot_chat_channels}})
+                            return f"Channel {data['channel_id']} removed from AI bot chat channels successfully"
+                        return f"Channel {data['channel_id']} is not in AI bot chat channels!"
+            case "roles":
+                role_data = next((
+                    role for role in guild["config"]["roles"] if role["role_id"] == data["role_id"]), None)
+                match action:
+                    case "create":
+                        if not data["channel_id"] or not data["message_id"] or not data["type"]:
+                            return
+                        base_roles_data = self.get_base_config("roles")
+                        base_roles_data["role_id"] = str(
+                            uuid.uuid1)[:-13].replace("-", "")
+                        base_roles_data["channel_id"] = data["channel_id"]
+                        base_roles_data["message_id"] = data["message_id"]
+                        base_roles_data["type"] = data["type"]
+                        guild["config"]["roles"].append(base_roles_data)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+                    case "delete":
+                        if not role_data:
+                            return
+                        guild["config"]["roles"].remove(role_data)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+                    case "modify":
+                        if not role_data:
+                            return
+                        role_data_copy = copy.deepcopy(role_data)
+                        guild["config"]["roles"].remove(role_data)
+                        if len(data["channel_id"]) > 0:
+                            role_data_copy["channel_id"] = data["channel_id"]
+                        if len(data["message_id"]) > 0:
+                            role_data_copy["message_id"] = data["message_id"]
+                        if len(data["type"]) > 0:
+                            role_data_copy["type"] = data["type"]
+                        guild["config"]["roles"].append(role_data_copy)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+            case "role_in_roles":
+                role_in_roles_data = next((
+                    role for role in guild["config"]["roles"] if role["message_id"] == data["message_id"]), None)
+                if not role_in_roles_data:
+                    return
+                role_in_roles = next((
+                    role for role in role_in_roles_data["roles"] if role["role_id"] == data["role_id"]), None)
+                match action:
+                    case "add":
+                        if role_in_roles:
+                            return
+                        base_role_in_roles_data = self.get_base_config(
+                            "role_in_roles")
+                        base_role_in_roles_data["role_name"] = data["role_name"]
+                        base_role_in_roles_data["emoji_id"] = data["emoji_id"]
+                        base_role_in_roles_data["role_id"] = data["role_id"]
+                        role_in_roles_data["roles"].append(
+                            base_role_in_roles_data)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+                    case "delete":
+                        if not role_in_roles:
+                            return
+                        role_in_roles_data["roles"].remove(role_in_roles)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+                    case "modify":
+                        if not role_in_roles:
+                            return
+                        if len(data["role_name"]) > 0:
+                            role_in_roles["role_name"] = data["role_name"]
+                        if len(data["emoji_id"]) > 0:
+                            role_in_roles["emoji_id"] = data["emoji_id"]
+                        if len(data["role_id"]) > 0:
+                            role_in_roles["role_id"] = data["role_id"]
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.roles": guild["config"]["roles"]}})
+            case "cronjobs":
+                cron_data = next((
+                    cron for cron in guild["config"]["cronjobs"] if cron["cron_id"] == data["cron_id"]), None)
+                match action:
+                    case "start":
+                        if not cron_data:
+                            return
+                        cron_data["start"] = True
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
+                    case "stop":
+                        if not cron_data:
+                            return
+                        cron_data["start"] = False
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
+                    case "create":
+                        if not data["time"] or not data["type"] or not data["channel_id"]:
+                            return
+                        base_cronjobs_data = self.get_base_config("cron")
+                        base_cronjobs_data["cron_id"] = str(
+                            uuid.uuid1)[:-13].replace("-", "")
+                        base_cronjobs_data["time"] = data["time"]
+                        base_cronjobs_data["type"] = data["type"]
+                        base_cronjobs_data["message"] = data["message"] if len(
+                            str(data["message"])) else base_cronjobs_data["message"]
+                        base_cronjobs_data["channel_id"] = data["channel_id"]
+                        base_cronjobs_data["onetime"] = data["onetime"] if len(
+                            data["onetime"]) else base_cronjobs_data["onetime"]
+                        base_cronjobs_data["play"] = data["play"] if len(
+                            str(data["play"])) else base_cronjobs_data["play"]
+                        guild["config"]["cronjobs"].append(base_cronjobs_data)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
+                        return base_cronjobs_data
+                    case "delete":
+                        if not cron_data:
+                            return
+                        guild["config"]["cronjobs"].remove(cron_data)
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
+                    case "modify":
+                        if not cron_data:
+                            return
+                        if len(data["time"]) > 0:
+                            cron_data["time"] = data["time"]
+                        if len(data["type"]) > 0:
+                            cron_data["type"] = data["type"]
+                        if len(data["message"]) > 0:
+                            cron_data["message"] = data["message"]
+                        if len(data["channel_id"]) > 0:
+                            cron_data["channel_id"] = data["channel_id"]
+                        if len(data["onetime"]) > 0:
+                            cron_data["onetime"] = data["onetime"]
+                        if len(data["play"]) > 0:
+                            cron_data["play"] = data["play"]
+                        self.guilds.update_one({"guild_id": data["guild_id"]}, {
+                            "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
+                        return cron_data
