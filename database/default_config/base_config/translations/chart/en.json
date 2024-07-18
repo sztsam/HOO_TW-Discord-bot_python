@@ -1,0 +1,222 @@
+{
+    "tribe_scope": {
+        "daily": {
+            "loot_res + scavenge": "farm + scavenge",
+            "loot_res": "farm",
+            "scavenge": "scavenge",
+            "conquer": "conquer",
+            "kill_att": "kill att",
+            "kill_def": "kill def",
+            "kill_sup": "kill sup",
+            "kill_all": "kill all"
+        },
+        "monthly": {
+            "rank-villages": "Rank - Villages",
+            "rank-points": "Rank - Points",
+            "rank-kill_all": "Rank - OD",
+            "points-villages": "Points - Villages",
+            "villages-kill_all": "Villages - OD",
+            "rank": "Rank",
+            "points": "Points",
+            "villages": "Villages",
+            "kill_att": "ODA",
+            "kill_def": "ODD",
+            "kill_sup": "ODS",
+            "kill_all": "OD"
+        },
+        "od": {
+            "kill_att": "kill att",
+            "kill_def": "kill def",
+            "kill_sup": "kill sup",
+            "kill_all": "kill all"
+        },
+        "conquer": "conquer"
+    },
+    "type": {
+        "bar": "bar",
+        "line": "line",
+        "pie": "pie",
+        "violin": "violin"
+    },
+    "style": {
+        "individual": "individual",
+        "stacked": "stacked",
+        "combined": "combined"
+    },
+    "color": {
+        "transparent": "transparent",
+        "black": "black",
+        "slategray": "slategray",
+        "white": "white",
+        "blue": "blue",
+        "indigo": "indigo",
+        "teal": "teal",
+        "darkgreen": "darkgreen",
+        "darkred": "darkred"
+    },
+    "error": {
+        "scope_error": "choosing scope is a must!",
+        "server_error": "choosing server is a must!",
+        "type_error": "choosing type is a must!"
+    },
+    "title": {
+        "daily": "Daily",
+        "stat": "statistics",
+        "loot_res + scavenge": "farm + scavenge",
+        "loot_res": "farm",
+        "scavenge": "scavenge",
+        "conquer": "Conquer",
+        "kill_att": "ODA",
+        "kill_def": "ODD",
+        "kill_sup": "ODS",
+        "kill_all": "OD",
+        "rank-villages": "Rank - Villages",
+        "rank-points": "Rank - Points",
+        "rank-kill_all": "Rank - OD",
+        "points-villages": "Points - Villages",
+        "villages-kill_all": "Villages - OD",
+        "rank": "Rank",
+        "points": "Points",
+        "villages": "Villages"
+    },
+    "dataset_label": {
+        "loot_res + scavenge": {
+            "individual": {
+                "a": "farm",
+                "b": "scavenge"
+            },
+            "stacked": {
+                "a": "farm",
+                "b": "scavenge"
+            },
+            "combined": {
+                "sum": "farm + scavenge"
+            }
+        },
+        "loot_res": {
+            "combined": {
+                "sum": "farm"
+            }
+        },
+        "scavenge": {
+            "combined": {
+                "sum": "scavenge"
+            }
+        },
+        "conquer": {
+            "combined": {
+                "sum": "conquer"
+            }
+        },
+        "kill_att": {
+            "combined": {
+                "sum": "ODA"
+            }
+        },
+        "kill_def": {
+            "combined": {
+                "sum": "ODD"
+            }
+        },
+        "kill_sup": {
+            "combined": {
+                "sum": "ODS"
+            }
+        },
+        "kill_all": {
+            "individual": {
+                "a": "ODA",
+                "b": "ODD",
+                "c": "ODS"
+            },
+            "stacked": {
+                "a": "ODA",
+                "b": "ODD",
+                "c": "ODS"
+            },
+            "combined": {
+                "sum": "ODA + ODD + ODS"
+            }
+        },
+        "rank-villages": {
+            "individual": {
+                "a": "Rank",
+                "b": "Villages"
+            },
+            "stacked": {
+                "a": "Rank",
+                "b": "Villages"
+            },
+            "combined": {
+                "sum": "Rank"
+            }
+        },
+        "rank-points": {
+            "individual": {
+                "a": "Rank",
+                "b": "Points"
+            },
+            "stacked": {
+                "a": "Rank",
+                "b": "Points"
+            },
+            "combined": {
+                "sum": "Rank"
+            }
+        },
+        "rank-kill_all": {
+            "individual": {
+                "a": "Rank",
+                "b": "OD"
+            },
+            "stacked": {
+                "a": "Rank",
+                "b": "OD"
+            },
+            "combined": {
+                "sum": "Rank"
+            }
+        },
+        "points-villages": {
+            "individual": {
+                "a": "Points",
+                "b": "Villages"
+            },
+            "stacked": {
+                "a": "Points",
+                "b": "Villages"
+            },
+            "combined": {
+                "sum": "Points"
+            }
+        },
+        "villages-kill_all": {
+            "individual": {
+                "a": "Villages",
+                "b": "OD"
+            },
+            "stacked": {
+                "a": "Villages",
+                "b": "OD"
+            },
+            "combined": {
+                "sum": "Villages"
+            }
+        },
+        "rank": {
+            "combined": {
+                "sum": "Rank"
+            }
+        },
+        "points": {
+            "combined": {
+                "sum": "Points"
+            }
+        },
+        "villages": {
+            "combined": {
+                "sum": "Villages"
+            }
+        }
+    }
+}

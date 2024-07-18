@@ -2,10 +2,10 @@ import traceback
 import dotenv
 import os
 import pymongo
-import uuid
 import datetime
 import copy
-from db_default_config import db_sample
+from database.default_config import default_config
+from database.id_generator import id_generator
 dotenv.load_dotenv()
 
 
@@ -17,7 +17,7 @@ class Mongodb:
         self.guilds = "GUILDS"
         self.base_config = "BASE_CONFIG"
         self.errors = "ERRORS"
-        self.sample = db_sample
+        self.sample = default_config()
         self.setup_database()
 
     def check_connect(self):
@@ -73,7 +73,7 @@ class Mongodb:
             return {"status": False}
         basic_cronjobs = self.base_config.find({"name": "basic_cronjobs"})[0]
         cron_data = self.sample["cron"]
-        cron_data["cron_id"] = str(uuid.uuid1)[:-13].replace("-", "")
+        cron_data["cron_id"] = id_generator(1)
         cron_data["time"] = data["time"] if not data["time"] else cron_data["time"]
         cron_data["type"] = data["type"] if not data["type"] else cron_data["type"]
         cron_data["message"] = data["message"] if not data["message"] else cron_data["message"]
@@ -91,7 +91,7 @@ class Mongodb:
 
     def create_guild(self, data):
         guild_exist = len(self.find_guild(data["guild_id"]))
-        if guild_exist:
+        if not guild_exist:
             errors = []
             if not data["guild_id"]:
                 errors.append("Guild ID error")
@@ -104,11 +104,11 @@ class Mongodb:
                 }
 
             new_data = self.get_base_config("sample_guild")
-            new_data["id"] = str(uuid.uuid1)[:-13].replace("-", "")
+            new_data["id"] = id_generator(1)
             new_data["guild_id"] = data["guild_id"]
             new_data["name"] = data["name"]
             new_data["pass"] = data["pass"] if (data["pass"] and len(
-                data["pass"]) > 4) else str(uuid.uuid4)[:-13].replace("-", "")
+                data["pass"]) > 4) else id_generator(4)
             new_data["market"] = data["market"][:2]
             self.guilds.insert_one(new_data)
             return {
@@ -276,8 +276,7 @@ class Mongodb:
                         if not data["channel_id"] or not data["message_id"] or not data["type"]:
                             return
                         base_roles_data = self.get_base_config("roles")
-                        base_roles_data["role_id"] = str(
-                            uuid.uuid1)[:-13].replace("-", "")
+                        base_roles_data["role_id"] = id_generator(1)
                         base_roles_data["channel_id"] = data["channel_id"]
                         base_roles_data["message_id"] = data["message_id"]
                         base_roles_data["type"] = data["type"]
@@ -361,8 +360,7 @@ class Mongodb:
                         if not data["time"] or not data["type"] or not data["channel_id"]:
                             return
                         base_cronjobs_data = self.get_base_config("cron")
-                        base_cronjobs_data["cron_id"] = str(
-                            uuid.uuid1)[:-13].replace("-", "")
+                        base_cronjobs_data["cron_id"] = id_generator(1)
                         base_cronjobs_data["time"] = data["time"]
                         base_cronjobs_data["type"] = data["type"]
                         base_cronjobs_data["message"] = data["message"] if len(

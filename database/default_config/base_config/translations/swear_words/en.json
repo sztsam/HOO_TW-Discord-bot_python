@@ -1,0 +1,22 @@
+{
+    "modified": "Swear words punishment settings modified successfully",
+    "no_option_given": "No option given to modify settings",
+    "not_all_option_given": "Not all options given to modify settings",
+    "list_embed": {
+        "title": "Swear words settings",
+        "true": "Yes",
+        "false": "No",
+        "basic_settings": "Basic settings",
+        "ai_bot_chat_settings": "AI chatbot settings",
+        "react_emojis_settings": "React emoji settings",
+        "enabled": "enabled",
+        "use_global_preset": "use global preset",
+        "words": "words",
+        "emojis": "emojis",
+        "black_list": "black list",
+        "white_list": "white list",
+        "force_list": "force list",
+        "use": "use",
+        "percentage": "percentage"
+    }
+}

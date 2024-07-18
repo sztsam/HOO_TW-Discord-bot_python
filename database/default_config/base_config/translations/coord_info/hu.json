@@ -1,0 +1,6 @@
+{
+    "server_error": "Szerver hiba! Lehet a piac nincs engedélyezve, jelentsd ötletként!",
+    "market_error": "Piac nincs engedélyezve. Kérlek vedd fel a kapcsolatot a bot adminnal!",
+    "channel_error": "Csatorna hiba. Nem sikerült lekérni a csatorna azonosítót!",
+    "modified": "Koordináta infó beállítások sikeresen módosítva"
+}

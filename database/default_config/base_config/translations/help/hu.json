@@ -1,0 +1,6 @@
+{
+    "error": "Hiba történt a kérés elküldésében. Kérlek, próbáld meg újra!",
+    "success": "kérés sikeresen elküldve!",
+    "bug": "Hiba",
+    "idea": "Ötlet"
+}

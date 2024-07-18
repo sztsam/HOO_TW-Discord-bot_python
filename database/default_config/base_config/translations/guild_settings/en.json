@@ -1,0 +1,26 @@
+{
+    "errors": "Errors",
+    "server_error": "Choosing server is a must!",
+    "password_error": "Password must be at least 6 characters!",
+    "market_error": "Market not enabled. Please contact bot administrator!",
+    "translation_error": "Translation not available. Please contact bot administrator!",
+    "no_option_given": "No option given to modify settings",
+    "modified": "Bot guild settings modified successfully",
+    "list_embed": {
+        "title": "Bot basic settings on server",
+        "true": "Yes",
+        "false": "No",
+        "active": "Active",
+        "password": "Password",
+        "ban": "Ban",
+        "ban_reason": "Ban reason",
+        "market": "Market",
+        "preferred_language": "Preferred language",
+        "global_world": "Global world",
+        "global_guild": "Global guild",
+        "coord_info": "Show coord info",
+        "errors": {
+            "password": "Only server owner can see!"
+        }
+    }
+}

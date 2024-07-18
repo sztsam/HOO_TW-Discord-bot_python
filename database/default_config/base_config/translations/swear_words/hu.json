@@ -1,0 +1,22 @@
+{
+    "modified": "Káromkodás büntetés beállítások sikeresen módosítva",
+    "no_option_given": "Nem adtál meg semmilyen módosítási opciót",
+    "not_all_option_given": "Nem adtad meg az összes opciót a beállítások módosításához",
+    "list_embed": {
+        "title": "Káromkodás büntetés beállítások",
+        "true": "igen",
+        "false": "nem",
+        "basic_settings": "Alap beállítások",
+        "ai_bot_chat_settings": "AI chatbot beállítások",
+        "react_emojis_settings": "Reakciós emoji beállítások",
+        "enabled": "engedélyezve",
+        "use_global_preset": "alap beállítások használata",
+        "words": "szavak",
+        "emojis": "emojik",
+        "black_list": "black list",
+        "white_list": "white list",
+        "force_list": "force list",
+        "use": "használ",
+        "percentage": "százalék"
+    }
+}

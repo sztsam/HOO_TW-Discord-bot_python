@@ -1,0 +1,222 @@
+{
+    "tribe_scope": {
+        "daily": {
+            "loot_res + scavenge": "farm + gyűjtögetés",
+            "loot_res": "farm",
+            "scavenge": "gyűjtögetés",
+            "conquer": "foglalás",
+            "kill_att": "LET",
+            "kill_def": "LEV",
+            "kill_sup": "LES",
+            "kill_all": "LE"
+        },
+        "monthly": {
+            "rank-villages": "Helyezés - Falu",
+            "rank-points": "Helyezés - Pont",
+            "rank-kill_all": "Helyezés - LE",
+            "points-villages": "Pont - Falu",
+            "villages-kill_all": "Falu - LE",
+            "rank": "Helyezés",
+            "points": "Pont",
+            "villages": "Falu",
+            "kill_att": "LET",
+            "kill_def": "LEV",
+            "kill_sup": "LES",
+            "kill_all": "LE"
+        },
+        "od": {
+            "kill_att": "LET",
+            "kill_def": "LEV",
+            "kill_sup": "LES",
+            "kill_all": "LE"
+        },
+        "conquer": "foglalás"
+    },
+    "type": {
+        "bar": "oszlop",
+        "line": "vonal",
+        "pie": "kör",
+        "violin": "eloszlás"
+    },
+    "style": {
+        "individual": "egyéni",
+        "stacked": "halmozott",
+        "combined": "kombinált"
+    },
+    "color": {
+        "transparent": "átlátszó",
+        "black": "fekete",
+        "slategray": "palaszürke",
+        "white": "fehér",
+        "blue": "kék",
+        "indigo": "indigó",
+        "teal": "kékeszöld",
+        "darkgreen": "sötétzöld",
+        "darkred": "sötétpiros"
+    },
+    "error": {
+        "scope_error": "hatókör választása kötelező!",
+        "server_error": "szerver választása kötelező!",
+        "type_error": "típus választása kötelező!"
+    },
+    "title": {
+        "daily": "Napi",
+        "stat": "statisztika",
+        "loot_res + scavenge": "farm + gyűjtögetés",
+        "loot_res": "farm",
+        "scavenge": "gyűjtögetés",
+        "conquer": "foglalás",
+        "kill_att": "LET",
+        "kill_def": "LEV",
+        "kill_sup": "LES",
+        "kill_all": "LE",
+        "rank-villages": "Helyezés - Falu",
+        "rank-points": "Helyezés - Pont",
+        "rank-kill_all": "Helyezés - LE",
+        "points-villages": "Pont - Falu",
+        "villages-kill_all": "Falu - LE",
+        "rank": "Helyezés",
+        "points": "Pont",
+        "villages": "Falu"
+    },
+    "dataset_label": {
+        "loot_res + scavenge": {
+            "individual": {
+                "a": "farm",
+                "b": "gyűjtögetés"
+            },
+            "stacked": {
+                "a": "farm",
+                "b": "gyűjtögetés"
+            },
+            "combined": {
+                "sum": "farm + gyűjtögetés"
+            }
+        },
+        "loot_res": {
+            "combined": {
+                "sum": "farm"
+            }
+        },
+        "scavenge": {
+            "combined": {
+                "sum": "gyűjtögetés"
+            }
+        },
+        "conquer": {
+            "combined": {
+                "sum": "foglalás"
+            }
+        },
+        "kill_att": {
+            "combined": {
+                "sum": "LET"
+            }
+        },
+        "kill_def": {
+            "combined": {
+                "sum": "LEV"
+            }
+        },
+        "kill_sup": {
+            "combined": {
+                "sum": "LES"
+            }
+        },
+        "kill_all": {
+            "individual": {
+                "a": "LET",
+                "b": "LEV",
+                "c": "LES"
+            },
+            "stacked": {
+                "a": "LET",
+                "b": "LEV",
+                "c": "LES"
+            },
+            "combined": {
+                "sum": "LET + LEV + LES"
+            }
+        },
+        "rank-villages": {
+            "individual": {
+                "a": "Helyezés",
+                "b": "Falu"
+            },
+            "stacked": {
+                "a": "Helyezés",
+                "b": "Falu"
+            },
+            "combined": {
+                "sum": "Helyezés"
+            }
+        },
+        "rank-points": {
+            "individual": {
+                "a": "Helyezés",
+                "b": "Pont"
+            },
+            "stacked": {
+                "a": "Helyezés",
+                "b": "Pont"
+            },
+            "combined": {
+                "sum": "Helyezés"
+            }
+        },
+        "rank-kill_all": {
+            "individual": {
+                "a": "Helyezés",
+                "b": "LE"
+            },
+            "stacked": {
+                "a": "Helyezés",
+                "b": "LE"
+            },
+            "combined": {
+                "sum": "Helyezés"
+            }
+        },
+        "points-villages": {
+            "individual": {
+                "a": "Pont",
+                "b": "Falu"
+            },
+            "stacked": {
+                "a": "Pont",
+                "b": "Falu"
+            },
+            "combined": {
+                "sum": "Pont"
+            }
+        },
+        "villages-kill_all": {
+            "individual": {
+                "a": "Falu",
+                "b": "LE"
+            },
+            "stacked": {
+                "a": "Falu",
+                "b": "LE"
+            },
+            "combined": {
+                "sum": "Falu"
+            }
+        },
+        "rank": {
+            "combined": {
+                "sum": "Helyezés"
+            }
+        },
+        "points": {
+            "combined": {
+                "sum": "Pont"
+            }
+        },
+        "villages": {
+            "combined": {
+                "sum": "Falu"
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "server_error": "Server error! Market may not be enabled, report an enhancement ticket!",
+    "market_error": "Market not enabled. Please contact bot administrator!",
+    "channel_error": "Channel error. Couldn't get channel id!",
+    "modified": "Coord info settings modified successfully"
+}

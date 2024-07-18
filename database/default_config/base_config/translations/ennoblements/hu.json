@@ -1,0 +1,42 @@
+{
+    "barbarian": "Barbár",
+    "nobled": "elfoglalta",
+    "old_owner": "Régi tulajdonos",
+    "channel": "Csatorna",
+    "play": "Megy",
+    "command_message": {
+        "server": "Szerver hiba! Lehet a piac nincs engedélyezve, jelentsd ötletként!",
+        "tribe_error": "Nem létezik ilyen klán a szerveren!",
+        "cron_id": "Nincs foglalásjelző regisztrálva ezzel az ID-vel!",
+        "created": "Foglalásjelző sikeresen létrehozva",
+        "deleted": "Foglalásjelző sikeresen törölve",
+        "all_deleted": "Összes foglalásjelző sikeresen törölve",
+        "modified": "Foglalásjelző sikeresen módosítva",
+        "channel": "Nincs foglalásjelző regisztrálva erre a csatornára!",
+        "guild": "Nincs foglalásjelző regisztrálva erre a szerverre!",
+        "list_embed": {
+            "title": "Foglalásjelző lista",
+            "server": "Szerver",
+            "tribe": "klán",
+            "gain": "Nyereség",
+            "loss": "Veszteség",
+            "self": "Önhódítás",
+            "internal": "Belsőzés",
+            "barbarian": "Barbár",
+            "continent": "Kontinens",
+            "channel": "Csatorna",
+            "play": "Megy"
+        },
+        "settings_embed": {
+            "title": "Foglalásjelző beállítások",
+            "use_default": "Alapbeállítások",
+            "guest_mode": "Vendég mód linkek",
+            "village_points": "Falu pont",
+            "player_points": "Játékos pont",
+            "tribe_points": "Klán pont",
+            "old_owner": "Régi tulajdonos",
+            "date_time": "Dátum és idő",
+            "relative_time": "Relatív idő"
+        }
+    }
+}

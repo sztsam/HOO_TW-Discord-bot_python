@@ -1,0 +1,42 @@
+{
+    "barbarian": "Barbarian",
+    "nobled": "nobled",
+    "old_owner": "Old owner",
+    "channel": "Channel",
+    "play": "Play",
+    "command_message": {
+        "server": "Server error! Market may not be enabled, report an enhancement ticket!",
+        "tribe_error": "No such tribe exists on the server!",
+        "cron_id": "No ennoblement registered with this ID!",
+        "created": "Ennoblement notification created successfully",
+        "deleted": "Ennoblement notification deleted successfully",
+        "all_deleted": "All ennoblement notification deleted successfully",
+        "modified": "Ennoblement notification modified successfully",
+        "channel": "No ennoblement notification registered on this channel!",
+        "guild": "No ennoblement notification registered to this guild!",
+        "list_embed": {
+            "title": "Ennoblement notifications list",
+            "server": "Server",
+            "tribe": "Tribe",
+            "gain": "Gain",
+            "loss": "loss",
+            "self": "Self",
+            "internal": "Internal",
+            "barbarian": "Barbarian",
+            "continent": "Continent",
+            "channel": "Channel",
+            "play": "Play"
+        },
+        "settings_embed": {
+            "title": "Ennoblements settings",
+            "use_default": "Use default settings",
+            "guest_mode": "Guest mode links",
+            "village_points": "Show village points",
+            "player_points": "Show player points",
+            "tribe_points": "Show tribe points",
+            "old_owner": "Show old owner",
+            "date_time": "Show date time",
+            "relative_time": "Show relative time"
+        }
+    }
+}

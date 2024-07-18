@@ -1,0 +1,26 @@
+{
+    "errors": "Hibák",
+    "server_error": "Szerver választása kötelező!",
+    "password_error": "Jelszó hossza legalább 6 karakter!",
+    "market_error": "Piac nincs engedélyezve. Kérlek vedd fel a kapcsolatot a bot adminnal!",
+    "translation_error": "Fordítás nem elérhető. Kérlek vedd fel a kapcsolatot a bot adminnal!",
+    "no_option_given": "Nem adtál meg semmilyen módosítási opciót",
+    "modified": "Bot szerver beállítások sikeresen módosítva",
+    "list_embed": {
+        "title": "Bot alap beállítások a szerveren",
+        "true": "Igen",
+        "false": "Nem",
+        "active": "Aktív",
+        "password": "Jelszó",
+        "ban": "Bann",
+        "ban_reason": "bann oka",
+        "market": "Piac",
+        "preferred_language": "Preferált nyelv",
+        "global_world": "Globális világ",
+        "global_guild": "Globális klán",
+        "coord_info": "Koordináta infó mutatása",
+        "errors": {
+            "password": "Csak szerver tulajdonos láthatja!"
+        }
+    }
+}

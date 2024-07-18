@@ -1,0 +1,6 @@
+{
+    "error": "There was an error submitting your request. Please try again!",
+    "success": "request submitted successfully!",
+    "bug": "Bug",
+    "idea": "Idea"
+}
