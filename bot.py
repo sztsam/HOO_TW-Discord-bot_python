@@ -1,6 +1,6 @@
 import dotenv
 import os
-from mongodb import Mongodb
+from database._database import Database
 dotenv.load_dotenv()
 
 DEV = True
@@ -11,4 +11,4 @@ BOT_CLIENT_ID = os.environ.get(
 BOT_GUILD_ID = os.environ.get(
     "DISCORDJS_DEV_GUILD_ID") if DEV else os.environ.get("DISCORDJS_OWN_GUILD_ID")
 
-mongodb = Mongodb()
+mongodb = Database()

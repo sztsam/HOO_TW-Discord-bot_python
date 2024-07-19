@@ -1,0 +1,8 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoIndent": true,
+    "autopep8.args": [
+        "--max-line-length=120"
+    ]
+}
