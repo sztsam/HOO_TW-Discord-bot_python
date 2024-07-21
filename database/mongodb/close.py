@@ -1,2 +1,2 @@
-def close(self):
+def close(self) -> None:
     self.client.close()

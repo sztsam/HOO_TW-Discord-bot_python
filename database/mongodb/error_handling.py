@@ -2,7 +2,7 @@ import traceback
 import datetime
 
 
-def error_handling(self, error: Exception, parameters=None):
+def error_handling(self, error: Exception, parameters: dict | None = None) -> dict | bool:
     error_message = str(error)
     error_stack = traceback.format_exc()
     error_stack_partial = error_stack.split('\n')[1]
@@ -30,8 +30,5 @@ def error_handling(self, error: Exception, parameters=None):
         }
         result = self.errors.insert_one(data)
     else:
-        self.errors.update_one(
-            {"hash": error_hash},
-            {"$inc": {"count": 1}}
-        )
+        self.errors.update_one({"hash": error_hash}, {"$inc": {"count": 1}})
     return False if existing_error else {"id": result.inserted_id, "hash": error_hash}

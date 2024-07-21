@@ -1,4 +1,4 @@
-def get_base_config(self, type):
+def get_base_config(self, type: str) -> str | dict | list | bool:
     options = {"_id": 0}
     match type:
         case "all":

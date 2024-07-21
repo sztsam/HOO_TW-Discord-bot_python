@@ -1,4 +1,4 @@
-def get_guild_data(self, id, password):
+def get_guild_data(self, id: str, password: str) -> dict:
     options = {
         "guild_id": id,
         "pass": password

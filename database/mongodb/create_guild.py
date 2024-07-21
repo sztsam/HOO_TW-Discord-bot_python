@@ -1,13 +1,13 @@
 from database.id_generator import id_generator
 
 
-def create_guild(self, data):
-    guild_exist = len(self.find_guild(data["guild_id"]))
+def create_guild(self, data: dict) -> dict:
+    guild_exist = len(self.find_guild(data.get("guild_id")))
     if not guild_exist:
         errors = []
-        if not data["guild_id"]:
+        if not data.get("guild_id"):
             errors.append("Guild ID error")
-        if not data["market"]:
+        if not data.get("market"):
             errors.append("Market error")
         if len(errors):
             return {
@@ -18,9 +18,8 @@ def create_guild(self, data):
         new_data = self.get_base_config("sample_guild")
         new_data["id"] = id_generator(1)
         new_data["guild_id"] = data["guild_id"]
-        new_data["name"] = data["name"]
-        new_data["pass"] = data["pass"] if (data["pass"] and len(
-            data["pass"]) > 4) else id_generator(4)
+        new_data["name"] = data["guild_name"]
+        new_data["pass"] = data["pass"] if (data.get("pass") and len(data["pass"]) > 4) else id_generator(4)
         new_data["market"] = data["market"][:2]
         self.guilds.insert_one(new_data)
         return {

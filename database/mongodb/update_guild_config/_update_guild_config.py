@@ -9,7 +9,7 @@ types = [type[:-3] for type in os.listdir(directory)
          if not type in skip_files and os.path.isfile(os.path.join(directory, type))]
 
 
-def update_guild_config(self, type, data, action):
+def update_guild_config(self, type: str, data: dict, action: str) -> dict | str | None:
     guild = self.find_guild(data["guild_id"])[0]
     if not guild:
         guild_created = self.create_guild(data)

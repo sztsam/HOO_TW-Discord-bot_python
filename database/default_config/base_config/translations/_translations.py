@@ -3,8 +3,8 @@ import json
 
 directory = os.path.dirname(os.path.abspath(__file__))
 skip_dir = ["__pycache__"]
-translation_types = [name for name in os.listdir(f"{directory}") if os.path.isdir(
-    f"{directory}/{name}") and not name in skip_dir]
+translation_types = [name for name in os.listdir(f"{directory}")
+                     if os.path.isdir(f"{directory}/{name}") and not name in skip_dir]
 
 
 def read_json_file(file_path):

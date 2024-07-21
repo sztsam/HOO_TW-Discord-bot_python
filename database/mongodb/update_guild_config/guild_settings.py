@@ -1,4 +1,4 @@
-def guild_settings(self, data):
+def guild_settings(self, data: dict) -> None:
     self.guilds.update_one({"guild_id": data["guild_id"]}, {
         "$set": {
             "pass": data["pass"],

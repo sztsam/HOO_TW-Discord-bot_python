@@ -1,11 +1,10 @@
 from database.id_generator import id_generator
 
 
-def cronjobs(self, data, action, guild):
+def cronjobs(self, data: dict, action: str, guild: dict) -> dict | None:
     cron_data = next((
-        cron for cron in guild["config"]["cronjobs"] if cron["cron_id"] == data["cron_id"]), None)
-    cron_keys = ["cron_id", "time", "type",
-                 "message", "channel_id", "onetime", "play"]
+        cron for cron in guild["config"]["cronjobs"] if cron["cron_id"] == data.get("cron_id")), None)
+    cron_keys = ["cron_id", "time", "type", "message", "channel_id", "onetime", "play"]
     match action:
         case "start":
             if not cron_data:
@@ -20,7 +19,7 @@ def cronjobs(self, data, action, guild):
             self.guilds.update_one({"guild_id": data["guild_id"]}, {
                 "$set": {"config.cronjobs": guild["config"]["cronjobs"]}})
         case "create":
-            if not data["time"] or not data["type"] or not data["channel_id"]:
+            if not data.get("time") or not data.get("type") or not data.get("channel_id"):
                 return
             base_cronjobs_data = self.get_base_config("cron")
             base_cronjobs_data["cron_id"] = id_generator(1)

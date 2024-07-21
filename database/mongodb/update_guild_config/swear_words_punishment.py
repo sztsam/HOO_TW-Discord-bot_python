@@ -1,3 +1,3 @@
-def swear_words_punishment(self, data):
+def swear_words_punishment(self, data: dict) -> None:
     self.guilds.update_one({"guild_id": data["guild_id"]}, {
         "$set": {"config.swear_words_punishment": data["swear_words_punishment"]}})

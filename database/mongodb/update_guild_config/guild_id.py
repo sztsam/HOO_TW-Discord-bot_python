@@ -1,5 +1,4 @@
-def guild_id(self, data):
+def guild_id(self, data: dict) -> None:
     if not data["new_guild_id"]:
         return
-    self.guilds.update_one({"guild_id": data["guild_id"]}, {
-        "$set": {"guild_id": data["new_guild_id"]}})
+    self.guilds.update_one({"guild_id": data["guild_id"]}, {"$set": {"guild_id": data["new_guild_id"]}})
